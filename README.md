@@ -70,6 +70,7 @@ https://spinwheel-sandbox.mxapps.io/index.html?profile=Responsive
 ### Issues, suggestions and feature requests
 https://github.com/bharathidas/Spin-Wheel---Roulette/issues
 
+### Screenshots:
 ![Screenshot_1](https://github.com/user-attachments/assets/661f0df8-6ac1-4672-aaf5-e476d674c979)
 
 ![Screenshot_2](https://github.com/user-attachments/assets/e312e0fd-d9e3-4dfb-97a1-0a2f212fbf38)
