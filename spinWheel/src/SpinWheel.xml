@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.spinwheel.SpinWheel" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Spin Wheel</name>
+    <description>Customizable roulette wheel with spinning animation.</description>
+    <icon>
+        iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAABp1BMVEUAAABV//9mzP9LtP9Ms/9Jtv9NsvdJsfpLtPpJsfdJsfhJsvhJsvdKsvdJsPhKsPhJsfdJsPhJsfdIsfhJsfdIsPdJsfhJsfhJsPhJsPhIsfhIsPdJsPdKsPdKsfdNsvdOsvdPs/dQs/dRtPdStPdTtPdUtfdWtvdXtvdauPdcuPdeufdeufhguvhiu/hju/hkvPhmvfhnvfhpvvhrv/huwPhvwfhxwfhywvhzwvh4xfl5xfl6xfl8xvl9xvl9x/mByPmCyfmFyvmGyvmJzPmKzPmLzfmNzvqPzvqQz/qT0PqU0PqU0fqX0vqY0vqa0/qe1fqg1vqj1/uk1/un2fup2vut2/uv3Puw3Puw3fuz3vu13/u23/u34Pu44Pu64fu64fy84vy94vy+4/y/4/zD5fzE5fzG5vzH5vzI5/zK6PzL6PzR6/zT7P3U7P3V7f3W7f3Y7v3Z7v3c8P3e8f3f8f3g8f3i8v3l8/3l9P3n9P3r9v7t9/7u9/7v+P7w+P7x+f7y+f70+v71+v74/P75/P76/f77/f78/f78/v79/v7+/v7////6dMsRAAAAG3RSTlMAAwURGxwhMTNic3SEh4iVp7XBzejt7vH5/f6PsMNWAAABsklEQVR4AWIYfGAUjIJRMAqYuYREJKWJAqLCPGwY+jnFpEkBEryMqPr5pEkFgkwo9kuTDviR/S9GhgFSHAgDuKXJAQIIA4TIMkAcEY4i0mQBVrgBkuQZwA43QJo8wIFhQEhEOIBQOutHJozDOP5Crp4e1RhkJ0tKGJFd6oNEdtmJyEIzpaZl5nrRZgaHM/2Pf5/vwXXfyagXgG93bwSAlEolowLMm9w83gibhXH2gKKVdD67gTnWjwCk+VVjMQS4suSnnjMLRVFc9sAHvAX2A9fySaXNBMbEZVUWscaHIMRuqwBgD8hDEbnsRmfjUKJkAQZGCTlO/xWBwIADQLIZBlY441MvfoF1xlFS/4fy+bzXKh4dgNJE7L3eh3tmtuWa+AMcMIY3dgUvZQpGEYmMw2kD7HC+R29UqyoXLaBd0QZxzgXgikLLDSqJTKU5HOcS0MsbA9jPqtwCRvXm2eorBbNIJBw3KJ9O4Yl+AAXdnyaLt7PWN3jRWLvzmAVp94zO5+n41/onfo/UpExxZqI0O7NQr0DhIq9Io7hQpbRYp7hiobRqo6ByFcNWuY6CUTAKRgEAo8X0lBD3V30AAAAASUVORK5CYII=
+    </icon>
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Spin Configuration">
+                <property key="mustSpinKey" type="attribute" required="true">
+                    <caption>Must Spin</caption>
+                    <description>When this attribute changes to true, the wheel starts spinning. It is set back to false when the spinning stops. Default is false</description>
+                    <attributeTypes>
+                        <attributeType name="Boolean"/>
+                    </attributeTypes>
+                </property>
+                <property key="spinwheeldataKey" type="attribute" required="true">
+                    <caption>Spin Wheel Data</caption>
+                    <description>JSON array of options, e.g. [{"option":"A"},{"option":"B","style":{"backgroundColor":"red"}}]. An option can contain styling information.</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="SpinDurationKey" type="attribute" required="false">
+                    <caption>Spin Duration</caption>
+                    <description>Coefficient to adjust the default spin duration. Default is 1.0</description>
+                    <attributeTypes>
+                        <attributeType name="Decimal"/>
+                    </attributeTypes>
+                </property>
+                <property key="prizeNyumberKey" type="attribute" required="true">
+                    <caption>Prize Number</caption>
+                    <description>Receives the index of the winning option (between 0 and data.length-1) when the spinning stops.</description>
+                    <attributeTypes>
+                        <attributeType name="Integer"/>
+                    </attributeTypes>
+                </property>
+                <property key="startingOptionIndexKey" type="attribute" required="false">
+                    <caption>Starting Option Index</caption>
+                    <description>Sets which option (through its index in the data array) is initially selected by the roulette (before spinning). Updated with the winning option when the spinning stops.</description>
+                    <attributeTypes>
+                        <attributeType name="Integer"/>
+                    </attributeTypes>
+                </property>
+                <property key="disableInitialAnimationKey" type="attribute" required="false">
+                    <caption>Disable Initial Animation</caption>
+                    <description>When 'true', disables the initial backwards wheel animation. Default is false</description>
+                    <attributeTypes>
+                        <attributeType name="Boolean"/>
+                    </attributeTypes>
+                </property>
+                <property key="whenDone" type="action" required="false">
+                    <caption>On Complete Spinning</caption>
+                    <description>Action executed when the spinning stops.</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Button Configuration">
+            <property key="spinButtonNameKey" type="attribute" required="false">
+                <caption>Spin Button Name</caption>
+                <description>Caption of the Spin button. Default is 'Spin'</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="spinButtonClassNameKey" type="attribute" required="false">
+                <caption>Spin Button Class Name</caption>
+                <description>Class (styles) applied to the Spin button. Default is 'spinbutton'</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Wheel Appearance">
+            <property key="backgroundColorsKey" type="attribute" required="false">
+                <caption>Background Colors</caption>
+                <description>Comma-separated colors that fill the background of the roulette options, starting from option 0. Default is 'darkgrey,lightgrey'</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="textColorsKey" type="attribute" required="false">
+                <caption>Text Colors</caption>
+                <description>Comma-separated colors that fill the text of the roulette options, starting from option 0. Default is black</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="outerBorderColorKey" type="attribute" required="false">
+                <caption>Outer Border Color</caption>
+                <description>Color of the roulette's outer border line. Default is black</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="outerBorderWidthKey" type="attribute" required="false">
+                <caption>Outer Border Width</caption>
+                <description>Width of the roulette's outer border line (0 represents no outer border line). Default is 5</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                </attributeTypes>
+            </property>
+            <property key="innerRadiusKey" type="attribute" required="false">
+                <caption>Inner Radius</caption>
+                <description>Distance of the inner radius from the center of the roulette. Default is 0</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                </attributeTypes>
+            </property>
+            <property key="innerBorderColorKey" type="attribute" required="false">
+                <caption>Inner Border Color</caption>
+                <description>Color of the roulette's inner border line. Default is black</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="innerBorderWidthKey" type="attribute" required="false">
+                <caption>Inner Border Width</caption>
+                <description>Width of the roulette's inner border line (0 represents no inner border line). Default is 0</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                </attributeTypes>
+            </property>
+            <property key="radiusLineColorKey" type="attribute" required="false">
+                <caption>Radius Line Color</caption>
+                <description>Color of the radial lines that separate each option. Default is black</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="radiusLineWidthKey" type="attribute" required="false">
+                <caption>Radius Line Width</caption>
+                <description>Width of the radial lines that separate each option (0 represents no radial lines). Default is 5</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Text Appearance">
+            <property key="fontFamilyKey" type="attribute" required="false">
+                <caption>Font Family</caption>
+                <description>Global font family of the option text. Non-web-safe fonts are fetched from https://fonts.google.com/. Default is Roboto</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="fontSizeKey" type="attribute" required="false">
+                <caption>Font Size</caption>
+                <description>Global font size of the option text. Empty or 0 uses the default of 20</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                </attributeTypes>
+            </property>
+            <property key="fontWeightKey" type="attribute" required="false">
+                <caption>Font Weight</caption>
+                <description>Global font weight of the option text. Default is bold</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="fontStyleKey" type="attribute" required="false">
+                <caption>Font Style</caption>
+                <description>Global font style of the option text. Default is normal</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="perpendicularTextKey" type="attribute" required="false">
+                <caption>Perpendicular Text</caption>
+                <description>When 'true', sets the option texts perpendicular to the roulette's radial lines. Default is false</description>
+                <attributeTypes>
+                    <attributeType name="Boolean"/>
+                </attributeTypes>
+            </property>
+            <property key="TextDistanceKey" type="attribute" required="false">
+                <caption>Text Distance</caption>
+                <description>Distance of the option texts from the center of the roulette (percentage of the radius). Empty or 0 uses the default of 60</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

@@ -1,0 +1,54 @@
+.widget-spinwheel-clickable {
+    cursor: pointer;
+}
+
+.widget-spinwheel {
+    display: inline-block;
+}
+
+.widget-spinwheel.badge:empty {
+    display: initial;
+    /* Fix padding to stay round */
+    padding: 3px 10px;
+}
+
+.widget-spinwheel.label:empty {
+    display: initial;
+    /* Fix padding to stay square */
+    padding: 0.2em 0.8em 0.3em;
+}
+
+.widget-spinwheel.badge {
+    min-width: 18px;
+    min-height: 18px;
+}
+
+/* Default Spin button */
+.spinbutton {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.spinbutton:hover {
+    background-color: #0056b3;
+}
+
+.spinbutton:disabled {
+    background-color: #007bff;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.spinwheel-preview {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px dashed #9aa5b1;
+    border-radius: 4px;
+    color: #4a5563;
+}
